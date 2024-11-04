@@ -1,0 +1,38 @@
+.container-fluid {
+  max-width: 1200px;
+}
+
+h2.section-title,
+h3.section-subtitle,
+h5.aside-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.section-content {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-box {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.section-box:hover {
+  transform: translateY(-4px);
+}
+
+.section-text {
+  color: #555;
+  line-height: 1.6;
+}
+
+
+.section-content {
+  padding: 20px; 
+}

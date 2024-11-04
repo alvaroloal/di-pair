@@ -1,0 +1,25 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Lista de gasolineras en España</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Precio Gasóleo</th>
+          <th scope="col">Precio Gasolina</th>
+          <th scope="col">Precio Hidrógeno</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let gasolinera of gasolineras">
+          <td>{{ gasolinera.nombre }}</td>
+          <td>{{ gasolinera.direccion }}</td>
+          <td>{{ gasolinera.precioGasoleo || 'N/A' }}</td>
+          <td>{{ gasolinera.precioGasolina || 'N/A' }}</td>
+          <td>{{ gasolinera.precioHidrogeno || 'N/A' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
