@@ -11,7 +11,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { ListaGasolinerasComponent } from './components/lista-gasolineras/lista-gasolineras.component';
+
 
 @NgModule({
   declarations: [
@@ -21,13 +21,13 @@ import { ListaGasolinerasComponent } from './components/lista-gasolineras/lista-
     FooterComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ListaGasolinerasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+  
   ],
   providers: [
     provideAnimationsAsync(), 
