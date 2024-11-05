@@ -27,7 +27,6 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-  
   ],
   providers: [
     provideAnimationsAsync(), 

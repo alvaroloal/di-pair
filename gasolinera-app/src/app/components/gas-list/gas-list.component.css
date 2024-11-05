@@ -1,0 +1,22 @@
+.container {
+    max-width: 800px;
+    background-color: aliceblue;
+  }
+  
+  .gasolinera-list {
+    max-width: 600px;
+  }
+  
+  .card {
+    margin: 0 auto;
+  }
+  
+  .card-text strong {
+    color: #495057; 
+  }
+  
+  .price {
+    color: #d9534f; 
+    font-weight: bold;
+  }
+  

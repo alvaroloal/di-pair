@@ -1,12 +1,22 @@
-@for(gasolinera of listadoGasolineras; track gasolinera.IDEESS){
-
-
-<!-- <p class="card-text">{{ gasolinera.direccion }}</p>-->
-
-
-}
-
-
-
-
-
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Lista de Gasolineras</h2>
+  
+    <div class="gasolinera-list mx-auto">
+      <div *ngFor="let gasolinera of listadoGasolineras; let i = index" class="mb-3">
+        <div class="card border-primary">
+          <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">Estación: {{ gasolinera.nombre }}</h5>
+          </div>
+  
+          <div class="card-body">
+            <p class="card-text"><strong>ID EESS:</strong> {{ gasolinera.id }}</p>
+            <p class="card-text"><strong>CP:</strong> {{ gasolinera.postalCode }}</p>
+            <p class="card-text"><strong>Precio Gasolina 95: </strong> <span class="price">{{ gasolinera.price95 }} €</span></p>
+            <p class="card-text"><strong>Precio Diesel: </strong> <span class="price">{{ gasolinera.priceDiesel }} €</span></p>
+            <p class="card-text"><strong>Precio Biodiesel: </strong> <span class="price">{{ gasolinera.priceBiodiesel }} €</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
