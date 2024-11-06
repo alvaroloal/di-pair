@@ -1,0 +1,76 @@
+<nav class="navbar fondoNav navbar-expand-lg py-3">
+  <div class="container-fluid">
+    <mat-form-field class="w-25 rounded-3 me-3">
+      <mat-label>Combustibles</mat-label>
+      <mat-select [(ngModel)]="selectedFuel" (selectionChange)="filterByFuel($event.value)" required>
+        <mat-option value="biodiesel">Biodiesel</mat-option>
+        <mat-option value="gasoleoA">Gasoleo A</mat-option>
+        <mat-option value="gasoleoB">Gasoleo B</mat-option>
+        <mat-option value="95">Gasolina 95 E5</mat-option>
+        <mat-option value="98">Gasolina 98 E5</mat-option>
+        <mat-option value="hidrogeno">Hidrogeno</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="d-flex align-items-center me-3">
+      <div class="rounded-3 p-3 bg-light">
+        <mat-slider [min]="0" [max]="2" [step]="0.1" (change)="cambiandoPrecio()">
+          <input matSliderStartThumb name="precioMinimo" [(ngModel)]="precioMinimo">
+          <input matSliderEndThumb name="precioMaximo" [(ngModel)]="precioMaximo">
+        </mat-slider>
+        <div class="d-flex justify-content-between mt-2">
+          <p class="m-0">{{precioMinimo}}€</p>
+          <p class="m-0">{{precioMaximo}}€</p>
+        </div>
+      </div>
+      <button class="btn btn-primary ms-3" (click)="filterByPrice()" [disabled]="precioCambiado">Buscar Precios</button>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <form class="me-2">
+        <mat-form-field class="example-full-width">
+          <mat-label>Codigo Postal</mat-label>
+          <input matInput placeholder="41920" name="codigoPostalBuscado" [(ngModel)]="codigoPostalBuscado">
+        </mat-form-field>
+      </form>
+      <button class="btn btn-primary" (click)="filterByCodigoPostal()">
+        <mat-icon fontIcon="search"></mat-icon>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container mt-4">
+  <div class="row g-4">
+    @for(gasolinera of gasolinerasFiltradas; track gasolinerasFiltradas.indexOf(gasolinera)) {
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ gasolinera.nombre }}</h5>
+            @if (selectedFuel === '95' && gasolinera.price95 != 0) {
+              <p class="card-text">Gasolina 95: {{gasolinera.price95}}€</p>
+            }
+            @if (selectedFuel === 'gasoleoA' && gasolinera.priceGasoleoA != 0) {
+              <p class="card-text">Gasoleo A: {{gasolinera.priceGasoleoA}}€</p>
+            }
+            @if (selectedFuel === 'biodiesel' && gasolinera.priceBiodiesel != 0) {
+              <p class="card-text">Biodiesel: {{gasolinera.priceBiodiesel}}€</p>
+            }
+            @if (selectedFuel === '98' && gasolinera.priceGasolina98 != 0) {
+              <p class="card-text">Gasolina 98: {{gasolinera.priceGasolina98}}€</p>
+            }
+            @if (selectedFuel === 'hidrogeno' && gasolinera.priceHidrogeno != 0) {
+              <p class="card-text">Hidrogeno: {{gasolinera.priceHidrogeno}}€</p>
+            }
+            @if (selectedFuel === 'gasoleoB' && gasolinera.priceGasoleoB != 0) {
+              <p class="card-text">Gasoleo B: {{gasolinera.priceGasoleoB}}€</p>
+            }
+            <p class="card-text">CP: {{gasolinera.postalCode}}</p>
+            <p class="card-text">Provincia: {{gasolinera.provincia}}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

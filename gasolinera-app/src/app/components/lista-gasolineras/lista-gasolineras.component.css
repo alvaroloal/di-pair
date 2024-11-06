@@ -1,0 +1,117 @@
+.fondoNav {
+  background-color: rgb(211, 207, 207); 
+  padding: 1.5rem;
+}
+
+.botonNav {
+  color: white;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.botonNav:hover {
+  background-color: #00b4d8; 
+  color: #ffffff;
+}
+
+.navbar-brand img {
+  margin-right: 10px;
+  max-height: 40px;
+}
+
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.mat-form-field {
+  margin-right: 15px;
+  background-color: #e0f7fa;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.mat-slider-track-background {
+  background-color: #00b4d8;
+}
+
+.mat-slider-thumb {
+  background-color: #90e0ef;
+}
+
+.mat-slider-track-fill {
+  background-color: #00b4d8;
+}
+
+.mat-form-field-wrapper, .mat-select-value {
+  color: #0077b6;
+}
+
+.mat-label {
+  color: #0077b6;
+  font-weight: bold;
+}
+
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #0077b6;
+}
+
+.card-text {
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+
+.card-text span {
+  font-weight: bold;
+  color: #00b4d8;
+}
+
+
+@media (max-width: 768px) {
+  .fondoNav {
+    padding: 1rem;
+  }
+
+  .navbar-brand img {
+    max-height: 30px;
+  }
+
+  .botonNav {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+}

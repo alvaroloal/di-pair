@@ -11,7 +11,16 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { ListaGasolinerasComponent } from './components/lista-gasolineras/lista-gasolineras.component';
 
 
 
@@ -23,13 +32,22 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule
     FooterComponent,
     HomeComponent,
     PageNotFoundComponent,
+    ListaGasolinerasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule,
-    FormsModule
+    MatMenuModule,
+    MatButtonModule,
+    MatSliderModule,
+    FormsModule,
+    MatIconModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule
+
   ],
   providers: [
     provideAnimationsAsync(), 
