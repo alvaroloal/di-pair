@@ -9,19 +9,31 @@ import { Gasolinera } from '../../models/gas-item.dto';
 })
 export class GasListComponent implements OnInit {
   listadoGasolineras: Gasolinera[] = [];
+  listadoFiltrado: Gasolinera[] = [];
+
+  filtros = {
+    tipoCombustible: '',
+    precioMin: null,
+    precioMax: null,
+    codigoPostal: '',
+    nombresSeleccionados: []
+  };
+
+  nombresDisponibles: string[] = [];
 
   constructor(private gasService: GasService) {}
 
   ngOnInit() {
     this.gasService.getGasList().subscribe((respuesta) => {
-      // Transformo la respuesta del API en String (JSON)
+      // transformo la respuesta del API en String (JSON)
       const respuestaEnString = JSON.stringify(respuesta);
       let parsedData;
       try {
-        // Transformo el String en un objeto JSON
+        // transformo el String en un objeto JSON
         parsedData = JSON.parse(respuestaEnString);
         let arrayGasolineras = parsedData['ListaEESSPrecio'];
         this.listadoGasolineras = this.cleanProperties(arrayGasolineras);
+        this.obtenerNombresDisponibles();
       } catch (error) {
         console.error('Error parsing JSON:', error);
       }
@@ -30,22 +42,57 @@ export class GasListComponent implements OnInit {
     });
   }
 
-  private cleanProperties(arrayGasolineras: any) {
-    let newArray: Gasolinera[] = [];
-    arrayGasolineras.forEach((gasolineraMostrar: any) => {
-      const gasolineraConNombresGuenos: any = {};
+  
 
-      let gasolinera = new Gasolinera(
+  private cleanProperties(arrayGasolineras: any): Gasolinera[] {
+    return arrayGasolineras.map((gasolineraMostrar:any) => {
+      return new Gasolinera(
         gasolineraMostrar['IDEESS'],
         gasolineraMostrar['Rótulo'],
-        gasolineraMostrar['Precio Gasolina 95 E5'],
-        gasolineraMostrar['Precio Gasoleo A'],
-        gasolineraMostrar['C.P.'],
-        gasolineraMostrar['Precio Biodiesel']
+        parseFloat(gasolineraMostrar['Precio Gasolina 95 E5'].replace(',', '.')),
+        parseFloat(gasolineraMostrar['Precio Gasoleo A'].replace(',', '.')),
+        gasolineraMostrar['C.P.']
       );
-
-      newArray.push(gasolinera);
     });
-    return newArray;
+  }
+
+
+
+  private obtenerNombresDisponibles() {
+  
+    this.nombresDisponibles = Array.from(
+      new Set(this.listadoGasolineras.map((gas) => gas.nombre))
+    );
+  }
+
+  
+  aplicarFiltros() {
+    this.listadoFiltrado = this.listadoGasolineras.filter((gasolinera) => {
+      const cumpleCombustible =
+        !this.filtros.tipoCombustible ||
+        (this.filtros.tipoCombustible === 'Gasolina 95' && gasolinera.price95) ||
+        (this.filtros.tipoCombustible === 'Diesel' && gasolinera.priceDiesel);
+
+      const cumplePrecio =
+        (!this.filtros.precioMin || 
+         (gasolinera.price95 >= this.filtros.precioMin || gasolinera.priceDiesel >= this.filtros.precioMin)) &&
+        (!this.filtros.precioMax || 
+         (gasolinera.price95 <= this.filtros.precioMax || gasolinera.priceDiesel <= this.filtros.precioMax));
+
+  
+      const cumpleCodigoPostal =
+        !this.filtros.codigoPostal || gasolinera.postalCode === this.filtros.codigoPostal;
+
+      
+    });
+
+    if (this.listadoFiltrado.length === 0) {
+      console.log('No hay resultados con los filtros aplicados');
+    }
   }
 }
+
+
+
+
+

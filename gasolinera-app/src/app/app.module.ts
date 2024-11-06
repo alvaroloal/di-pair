@@ -11,6 +11,8 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { FormsModule } from '@angular/forms'; // Importa FormsModule
+
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     provideAnimationsAsync(), 
