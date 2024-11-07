@@ -1,6 +1,7 @@
 import { Component, Input, input, OnInit } from '@angular/core';
-import { Gasolinera } from '../../models/gasolinera-response.interface';
 import { GasolineraService } from '../../services/gasolinera.service';
+import { PipeGoogleMapsPipe } from '../../pipes/pipe-google-maps.pipe';
+import { Gasolinera } from '../../models/gasolinera-response.interface';
 
 @Component({
   selector: 'app-lista-gasolineras',
@@ -11,11 +12,13 @@ export class ListaGasolinerasComponent implements OnInit {
 
   listadoGasolineras: Gasolinera[] = [];
   gasolinerasFiltradas: Gasolinera[] = [];
+  gasolinerasPrecio: Gasolinera[] = [];
+  fuelTypes: string[] = ['Biodiesel', 'GasoleoA', 'GasoleoB', '95', '98', 'Hidrogeno'];
+  combustiblesSeleccionados: string[] = [];
   @Input() precioMaximo: number = 2;
   @Input() precioMinimo: number = 0;
-  selectedFuel: string = '';
+  selectedFuel: string = 'all';
   codigoPostalBuscado: string = '';
-  precioCambiado: boolean = false;
 
   constructor(private gasolineraService: GasolineraService) { }
 
@@ -26,7 +29,7 @@ export class ListaGasolinerasComponent implements OnInit {
       try {
         parsedData = JSON.parse(respuestaEnString);
         let arrayGasolineras = parsedData['ListaEESSPrecio'];
-        this.listadoGasolineras = this.cleanProperties(arrayGasolineras);
+        this.listadoGasolineras = this.cleanProperties(arrayGasolineras).splice(0, 200);
         this.gasolinerasFiltradas = this.listadoGasolineras;
         console.log(this.listadoGasolineras);
       } catch (error) {
@@ -71,42 +74,45 @@ export class ListaGasolinerasComponent implements OnInit {
 
   filterByFuel(fuel: string) {
     switch (fuel) {
+      case 'all':
+        this.gasolinerasFiltradas = this.listadoGasolineras;
+        break;
       case '95':
         this.gasolinerasFiltradas = this.listadoGasolineras.filter(
-          (gasolinera) => gasolinera.price95 !== null
+          (gasolinera) => gasolinera.price95 !=0
         );
 
         break;
       case 'gasoleoA':
         this.gasolinerasFiltradas = this.listadoGasolineras.filter(
           (gasolinera) => {
-            return gasolinera.priceGasoleoA !== null;
+            return gasolinera.priceGasoleoA !=0;
           }
         );
         break;
       case 'biodiesel':
         this.gasolinerasFiltradas = this.listadoGasolineras.filter(
-          (gasolinera) => gasolinera.priceBiodiesel !== null
+          (gasolinera) => gasolinera.priceBiodiesel !=0
         );
         break;
       case '98':
         this.gasolinerasFiltradas = this.listadoGasolineras.filter(
           (gasolinera) => {
-            return gasolinera.priceGasolina98 !== null;
+            return gasolinera.priceGasolina98 !=0;
           }
         );
         break;
       case 'hidrogeno':
         this.gasolinerasFiltradas = this.listadoGasolineras.filter(
           (gasolinera) => {
-            return gasolinera.priceHidrogeno !== null;
+            return gasolinera.priceHidrogeno !=0;
           }
         );
         break;
       case 'gasoleoB':
         this.gasolinerasFiltradas = this.listadoGasolineras.filter(
           (gasolinera) => {
-            return gasolinera.priceGasoleoB !== null;
+            return gasolinera.priceGasoleoB !=0;
           }
         );
         break;
@@ -118,19 +124,15 @@ export class ListaGasolinerasComponent implements OnInit {
 
     this.gasolinerasFiltradas = this.listadoGasolineras.filter(
       (gasolinera) =>
-        (gasolinera.price95 !== null && gasolinera.price95 >= this.precioMinimo && gasolinera.price95 <= this.precioMaximo) ||
-        (gasolinera.priceGasoleoA !== null && gasolinera.priceGasoleoA >= this.precioMinimo && gasolinera.priceGasoleoA <= this.precioMaximo) ||
-        (gasolinera.priceBiodiesel !== null && gasolinera.priceBiodiesel >= this.precioMinimo && gasolinera.priceBiodiesel <= this.precioMaximo) ||
-        (gasolinera.priceGasolina98 !== null && gasolinera.priceGasolina98 >= this.precioMinimo && gasolinera.priceGasolina98 <= this.precioMaximo) ||
-        (gasolinera.priceHidrogeno !== null && gasolinera.priceHidrogeno >= this.precioMinimo && gasolinera.priceHidrogeno <= this.precioMaximo) ||
-        (gasolinera.priceGasoleoB !== null && gasolinera.priceGasoleoB >= this.precioMinimo && gasolinera.priceGasoleoB <= this.precioMaximo)
+        (gasolinera.price95 !=0 && gasolinera.price95 >= this.precioMinimo && gasolinera.price95 <= this.precioMaximo) ||
+        (gasolinera.priceGasoleoA !=0 && gasolinera.priceGasoleoA >= this.precioMinimo && gasolinera.priceGasoleoA <= this.precioMaximo) ||
+        (gasolinera.priceBiodiesel !=0 && gasolinera.priceBiodiesel >= this.precioMinimo && gasolinera.priceBiodiesel <= this.precioMaximo) ||
+        (gasolinera.priceGasolina98 !=0 && gasolinera.priceGasolina98 >= this.precioMinimo && gasolinera.priceGasolina98 <= this.precioMaximo) ||
+        (gasolinera.priceHidrogeno !=0 && gasolinera.priceHidrogeno >= this.precioMinimo && gasolinera.priceHidrogeno <= this.precioMaximo) ||
+        (gasolinera.priceGasoleoB !=0 && gasolinera.priceGasoleoB >= this.precioMinimo && gasolinera.priceGasoleoB <= this.precioMaximo)
     );
 
     console.log('Gasolineras filtradas:', this.gasolinerasFiltradas);
-    this.precioCambiado = true;
-  }
-  cambiandoPrecio() {
-    this.precioCambiado = false;
   }
   filterByCodigoPostal() {
     if (this.codigoPostalBuscado === '') {
@@ -141,4 +143,40 @@ export class ListaGasolinerasComponent implements OnInit {
       );
     }
   }
+  modificarListaCarburantes(tipoCarburante: string) {
+    if (!this.combustiblesSeleccionados.includes(tipoCarburante)) {
+      this.combustiblesSeleccionados.push(tipoCarburante);
+      console.log('Combustibles seleccionados:', this.combustiblesSeleccionados);
+    } else {
+      this.combustiblesSeleccionados.splice(this.combustiblesSeleccionados.indexOf(tipoCarburante), 1);
+      console.log('Combustibles seleccionados:', this.combustiblesSeleccionados);
+    }
+  }
+  filtrarPorCarburantes() {
+    if (this.combustiblesSeleccionados.length === 0) {
+      this.gasolinerasFiltradas = this.listadoGasolineras;
+    } else {
+      this.gasolinerasFiltradas = this.listadoGasolineras.filter((gasolinera) => {
+        return this.combustiblesSeleccionados.some((combustible) => {
+          switch (combustible) {
+            case 'Biodiesel':
+              return gasolinera.priceBiodiesel !=0;
+            case 'GasoleoA':
+              return gasolinera.priceGasoleoA !=0;
+            case 'GasoleoB':
+              return gasolinera.priceGasoleoB !=0;
+            case '95':
+              return gasolinera.price95 !=0;
+            case '98':
+              return gasolinera.priceGasolina98 !=0;
+            case 'Hidrogeno':
+              return gasolinera.priceHidrogeno !=0;
+            default:
+              return false;
+          }
+        });
+      });
+    }
+    console.log('Gasolineras filtradas por carburantes:', this.gasolinerasFiltradas);
+  }  
 }

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { GasListComponent } from './components/gas-list/gas-list.component';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -21,18 +20,22 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { ListaGasolinerasComponent } from './components/lista-gasolineras/lista-gasolineras.component';
+import { PipeGoogleMapsPipe } from './pipes/pipe-google-maps.pipe';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FiltrosComponent } from './components/filtro/filtro.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GasListComponent,
     MenuComponent,
     FooterComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ListaGasolinerasComponent
+    ListaGasolinerasComponent,
+    PipeGoogleMapsPipe,
+    FiltrosComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { ListaGasolinerasComponent } from './components/lista-gasolineras/lista-
     MatSelectModule,
     MatFormFieldModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
 
   ],
   providers: [

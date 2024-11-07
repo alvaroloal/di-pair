@@ -1,0 +1,23 @@
+<div *ngIf="estaciones.length > 0">
+    <h3>Estaciones de Servicio</h3>
+    <div *ngFor="let estacion of estaciones">
+      <p>{{ estacion.nombre }} - {{ estacion.direccion }}</p>
+    </div>
+  </div>
+  
+<div>
+    <label for="select-comunidad">Comunidad Autónoma</label>
+    <select id="select-comunidad" [(ngModel)]="selectedComunidad" (change)="onComunidadChange()">
+      <option value="">Seleccione Comunidad Autónoma</option>
+      <option *ngFor="let comunidad of comunidades" [value]="comunidad.codigo">{{ comunidad.nombre }}</option>
+    </select>
+  </div>
+  
+  <div>
+    <label for="select-provincia">Provincia</label>
+    <select id="select-provincia" [(ngModel)]="selectedProvincia" [disabled]="!selectedComunidad">
+      <option value="">Seleccione Provincia</option>
+      <option *ngFor="let provincia of provincias" [value]="provincia.codigo">{{ provincia.nombre }}</option>
+    </select>
+  </div>
+  
