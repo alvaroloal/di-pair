@@ -51,7 +51,9 @@ import { ListaGasolinerasComponent } from './components/lista-gasolineras/lista-
   ],
   providers: [
     provideAnimationsAsync(), 
-    provideHttpClient()
+    provideHttpClient(),
+
+    
   ],
   bootstrap: [AppComponent]
 })

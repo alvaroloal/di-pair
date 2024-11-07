@@ -23,14 +23,14 @@
           <p class="m-0">{{precioMaximo}}€</p>
         </div>
       </div>
-      <button class="btn btn-primary ms-3" (click)="filterByPrice()" [disabled]="precioCambiado">Buscar Precios</button>
+      <button class="btn btn-primary ms-3" (click)="filterByPrice()" [disabled]="precioCambiado">Buscar precios</button>
     </div>
 
     <div class="d-flex align-items-center">
       <form class="me-2">
         <mat-form-field class="example-full-width">
           <mat-label>Codigo Postal</mat-label>
-          <input matInput placeholder="41920" name="codigoPostalBuscado" [(ngModel)]="codigoPostalBuscado">
+          <input matInput placeholder="" name="codigoPostalBuscado" [(ngModel)]="codigoPostalBuscado">
         </mat-form-field>
       </form>
       <button class="btn btn-primary" (click)="filterByCodigoPostal()">
@@ -49,7 +49,7 @@
           <div class="card-body">
             <h5 class="card-title text-center">{{ gasolinera.nombre }}</h5>
             @if (selectedFuel === '95' && gasolinera.price95 != 0) {
-              <p class="card-text">Gasolina 95: {{gasolinera.price95}}€</p>
+              <p class="card-text">Gasolina 95: {{gasolinera.price95 }}€</p>
             }
             @if (selectedFuel === 'gasoleoA' && gasolinera.priceGasoleoA != 0) {
               <p class="card-text">Gasoleo A: {{gasolinera.priceGasoleoA}}€</p>
@@ -68,6 +68,9 @@
             }
             <p class="card-text">CP: {{gasolinera.postalCode}}</p>
             <p class="card-text">Provincia: {{gasolinera.provincia}}</p>
+
+            <button class="bg-dark text-white">Ubicación</button>
+            <a [href]="">Ver Ubicación</a>
           </div>
         </div>
       </div>

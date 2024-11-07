@@ -1,5 +1,5 @@
 import { Component, Input, input, OnInit } from '@angular/core';
-import { Gasolinera } from '../../models/gasolinera-response.interfaces';
+import { Gasolinera } from '../../models/gasolinera-response.interface';
 import { GasolineraService } from '../../services/gasolinera.service';
 
 @Component({
@@ -37,26 +37,26 @@ export class ListaGasolinerasComponent implements OnInit {
 
   private cleanProperties(arrayGasolineras: any) {
     let newArray: Gasolinera[] = [];
-    arrayGasolineras.forEach((gasolineraChusquera: any) => {
+    arrayGasolineras.forEach((gasolineraMostrar: any) => {
       const gasolineraConNombresGuenos: any = {};
 
       let gasolinera = new Gasolinera(
-        gasolineraChusquera['IDEESS'],
-        gasolineraChusquera['Rótulo'],
-        this.corregirPrecio(gasolineraChusquera['Precio Gasolina 95 E5']),
-        this.corregirPrecio(gasolineraChusquera['Precio Gasoleo A']),
-        gasolineraChusquera['C.P.'],
-        gasolineraChusquera['Dirección'],
-        gasolineraChusquera['Localidad'],
-        gasolineraChusquera['Provincia'],
-        parseFloat(gasolineraChusquera['Latitud'].replace(',', '.')),
-        parseFloat(gasolineraChusquera['Longitud (WGS84)'].replace(',', '.')),
-        gasolineraChusquera['Horario'],
-        gasolineraChusquera['Remisión'],
-        this.corregirPrecio(gasolineraChusquera['Precio Biodiesel']),
-        this.corregirPrecio(gasolineraChusquera['Precio Gasolina 98 E5']),
-        this.corregirPrecio(gasolineraChusquera['Precio Hidrogeno']),
-        this.corregirPrecio(gasolineraChusquera['Precio Gasoleo B'])
+        gasolineraMostrar['IDEESS'],
+        gasolineraMostrar['Rótulo'],
+        this.corregirPrecio(gasolineraMostrar['Precio Gasolina 95 E5']),
+        this.corregirPrecio(gasolineraMostrar['Precio Gasoleo A']),
+        gasolineraMostrar['C.P.'],
+        gasolineraMostrar['Dirección'],
+        gasolineraMostrar['Localidad'],
+        gasolineraMostrar['Provincia'],
+        parseFloat(gasolineraMostrar['Latitud'].replace(',', '.')),
+        parseFloat(gasolineraMostrar['Longitud (WGS84)'].replace(',', '.')),
+        gasolineraMostrar['Horario'],
+        gasolineraMostrar['Remisión'],
+        this.corregirPrecio(gasolineraMostrar['Precio Biodiesel']),
+        this.corregirPrecio(gasolineraMostrar['Precio Gasolina 98 E5']),
+        this.corregirPrecio(gasolineraMostrar['Precio Hidrogeno']),
+        this.corregirPrecio(gasolineraMostrar['Precio Gasoleo B'])
       );
 
       newArray.push(gasolinera);
