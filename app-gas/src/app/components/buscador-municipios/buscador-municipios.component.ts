@@ -53,7 +53,7 @@ export class BuscadorMunicipiosComponent implements OnInit{
 
     let gasolineraWena = new Gasolinera("", "", "", "", "", "", ""
       , "", "", "", "", "", "", "", "", "", "", "", "", "",
-      "", "", "", "", ""
+      "", "", "", "", "", "", ""
     )
 
     let gasolineraString = JSON.stringify(gasolinera);
@@ -85,6 +85,8 @@ export class BuscadorMunicipiosComponent implements OnInit{
     gasolineraWena.Remision = gasolinera["Remisión"];
     gasolineraWena.Rotulo = gasolinera["Rótulo"];
     gasolineraWena.IDEESS = gasolinera["IDEESS"];
+    gasolineraWena.IDProvincia = gasolinera["IDProvincia"];
+    gasolineraWena.IDCCAA = gasolinera["IDCCAA"];
 
     return gasolineraWena;
   }

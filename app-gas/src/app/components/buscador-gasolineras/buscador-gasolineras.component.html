@@ -1,47 +1,41 @@
-<div id="buscadores" class="mt-4">
+<div id="buscadores">
   <div class="buscador-gasolinera">
     <h5 id="titulos">{{ titulo }}</h5>
 
-    <div class="container mt-4">
-      <label for="carburante">Carburante: </label>
-
-      <select
-        id="carburante"
-        [(ngModel)]="carburanteSeleccionado"
-        (change)="seleccionarCarburante(carburanteSeleccionado)"
-      >
+    <div>
+      <label for="carburante">Carburante:</label>
+      <select id="carburante" [(ngModel)]="carburanteSeleccionado" (change)="seleccionarCarburante(carburanteSeleccionado)">
         <option *ngFor="let tipo of tiposCarburantes" [value]="tipo.nombre">
           {{ tipo.nombre }}
         </option>
       </select>
     </div>
 
+    <div class="mt-3">
+      <label>0€</label>
+      <input type="range" [(ngModel)]="maxPrice" min="0" max="2" step="0.01">
+      <label>2€</label>
+    </div>
+
+    <label> Hasta {{ maxPrice }} €/L</label>
+
     <div class="p-2 d-flex justify-content-center">
       <div class="exterior">
         @for (gasolinera of gasolinerasFiltradas; track $index) {
-        <div (click)="onClick(gasolinera)">
-          <div
-            *ngIf="
-              titulo.toLowerCase() === 'gasolineras' ||
-              gasolinera.Municipio.toLowerCase() === titulo.toLowerCase()
-            "
-            class="container"
-          >
+          <div (click)="onClick(gasolinera)" *ngIf="isPriceWithinRange(gasolinera, minPrice,maxPrice)">
+          
+          <div *ngIf="titulo.toLowerCase() === 'gasolineras' || gasolinera.Municipio.toLowerCase() === titulo.toLowerCase()" class="container">
             <div class="info">
-              <p class="nombre">
-                <strong>{{ gasolinera.Rotulo }}</strong>
-              </p>
+              <p class="nombre"><strong>{{ gasolinera.Rotulo }}</strong></p>
               <p class="direccion">{{ gasolinera.Direccion }}</p>
             </div>
 
-            <div class="precio">
-              <p>
-                <strong>{{ obtenerPrecioCarburante(gasolinera) }} €/L</strong>
-              </p>
+            <div class="precio" *ngIf="isPriceWithinRange(gasolinera, minPrice, maxPrice)">
+              <p><strong>{{ obtenerPrecioCarburante(gasolinera) | commaToDot}} €/L </strong></p>
             </div>
           </div>
         </div>
-        }
+      }
       </div>
     </div>
   </div>

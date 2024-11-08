@@ -1,57 +1,104 @@
-
-
-<div class="card mx-auto shadow-sm border-0 mt-4" style="max-width: 500px;">
-    <div class="card-header bg-primary text-white text-center">
-        <h5 class="mb-0">Carburantes</h5>
-    </div>
-    <div class="card-body">
-        <ul class="list-group list-group-flush">
-            <li *ngIf="gasolinera?.PrecioGasoleoA" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gasóleo A</span></strong>
-                <span>{{ gasolinera.PrecioGasoleoA }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioBiodiesel" class="list-group-item d-flex justify-content-between">
-                <strong><span>Biodiesel</span></strong>
-                <span>{{ gasolinera.PrecioBiodiesel }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioBioetanol" class="list-group-item d-flex justify-content-between">
-                <strong><span>Bioetanol</span></strong>
-                <span>{{ gasolinera.PrecioBioetanol }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioGasNaturalComprimido" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gas Natural Comprimido</span></strong>
-                <span>{{ gasolinera.PrecioGasNaturalComprimido }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioGasNaturalLicuado" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gas Natural Licuado</span></strong>
-                <span>{{ gasolinera.PrecioGasNaturalLicuado }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioGasoleoB" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gasoleo B</span></strong>
-                <span>{{ gasolinera.PrecioGasoleoB }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioGasoleoPremium" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gasoleo Premiun</span></strong>
-                <span>{{ gasolinera.PrecioGasoleoPremium }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioGasolina95E10" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gasolina 95 E10</span></strong>
-                <span>{{ gasolinera.PrecioGasolina95E10 }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioGasolina95E5" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gasolina 95 E5</span></strong>
-                <span>{{ gasolinera.PrecioGasolina95E5 }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioGasolina95E5Premium" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gasolina 95 ES Premiun</span></strong>
-                <span>{{ gasolinera.PrecioGasolina95E5Premium }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioGasolina98E10" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gasolina 98 E10</span></strong>
-                <span>{{ gasolinera.PrecioGasolina98E10 }} €</span>
-            </li>
-            <li *ngIf="gasolinera?.PrecioGasolina98E5" class="list-group-item d-flex justify-content-between">
-                <strong><span>Gasolina 95 E5</span></strong>
-                <span>{{ gasolinera.PrecioGasolina98E5 }} €</span>
-            </li>
-            
+<h5 class="text-center mb-3">
+    Carburantes
+</h5>
+@if(gasolinera != null){
+<div class="carburantes-exterior mx-auto">
+    <table class="table table-stripped">
+        <tbody>
+            <tr>
+                @if(gasolinera.PrecioGasoleoA != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gasoleo A</span>
+                        <span>{{gasolinera.PrecioGasoleoA}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioBiodiesel != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Biodiesel</span>
+                        <span>{{gasolinera.PrecioBiodiesel}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioBioetanol != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Bioetanol</span>
+                        <span>{{gasolinera.PrecioBioetanol}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioGasNaturalComprimido != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gas Natural Comprimido</span>
+                        <span>{{gasolinera.PrecioGasNaturalComprimido}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioGasNaturalLicuado != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gas Natural Licuado</span>
+                        <span>{{gasolinera.PrecioGasNaturalLicuado}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioGasoleoB != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gasoleo B</span>
+                        <span>{{gasolinera.PrecioGasoleoB}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioGasoleoPremium != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gasoleo Premium</span>
+                        <span>{{gasolinera.PrecioGasoleoPremium}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioGasolina95E10 != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gasolina 95 E10</span>
+                        <span>{{gasolinera.PrecioGasolina95E10}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioGasolina95E5 != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gasolina 95 E5</span>
+                        <span>{{gasolinera.PrecioGasolina95E5}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioGasolina95E5Premium != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gasolina 95 E5 Premium</span>
+                        <span>{{gasolinera.PrecioGasolina95E5Premium }}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioGasolina98E10 != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gasolina 98 E10</span>
+                        <span>{{gasolinera.PrecioGasolina98E10}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioGasolina98E5 != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Gasolina 98 E5</span>
+                        <span>{{gasolinera.PrecioGasolina98E5}}€</span>
+                    </td>
+                }
+                @if(gasolinera.PrecioHidrogen != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>Hidrogeno</span>
+                        <span>{{gasolinera.PrecioHidrogen}}€</span>
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
+}

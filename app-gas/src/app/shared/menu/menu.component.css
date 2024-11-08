@@ -3,9 +3,7 @@
   background-color: #f9b54c;
 }
 .navbar-nav{
-  font-size: larger;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight: bold;
+  background-color: rgb(215, 215, 216);
 }
 
 .navbar-nav .nav-item {

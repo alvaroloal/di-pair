@@ -1,0 +1,16 @@
+<div class="buscador-cp-interior">
+    <h5 class="titulo">Código postal</h5>
+    <mat-form-field appearance="outline" id="buscador-2">
+        <mat-label>Código postal</mat-label>
+        <input type="text"
+        matInput
+        [formControl]="codigoPostal"
+        [matAutocomplete]="auto" >
+        <mat-autocomplete #auto="matAutocomplete">
+            @for (codigoPostal of listaCodigosPostales; track $index) {
+                <mat-option [value]="codigoPostal">{{codigoPostal}}</mat-option>
+            }
+        </mat-autocomplete>
+    </mat-form-field>
+    <button class="btn btn-dark m-3" (click)="buscarCodigoPostal(codigoPostal)">Buscar</button>
+</div>

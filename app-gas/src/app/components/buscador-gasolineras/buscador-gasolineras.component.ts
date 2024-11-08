@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { GasolineraService } from '../../services/gasolinera.service';
-import { Gasolinera } from '../../models/gasolinera.dto';
+import { ComunidadProvincia, Gasolinera } from '../../models/gasolinera.dto';
 import { BuscadorMunicipiosComponent } from '../../components/buscador-municipios/buscador-municipios.component';
 
 @Component({
@@ -12,7 +12,9 @@ export class BuscadorGasolinerasComponent implements OnInit {
 
   @Input() titulo!: string;
   @Input() municipio!: string;
+  @Input() comunidadProvincia!: ComunidadProvincia;
   @Input() carburanteSeleccionado!: string;
+  @Input() codigoPostalSeleccionado!: string;
   @Output() gasolineraSeleccionada = new EventEmitter<Gasolinera>();
 
   tiposCarburantes = [
@@ -23,6 +25,8 @@ export class BuscadorGasolinerasComponent implements OnInit {
   
   gasolinerasFiltradas: Gasolinera[] = [];
   carburante!: string;
+  minPrice: number = 0; 
+  maxPrice: number = 2;
   
   constructor(private service: GasolineraService) {}
 
@@ -42,6 +46,23 @@ export class BuscadorGasolinerasComponent implements OnInit {
         
         if (!this.municipio || gasolineraParsed.Municipio.toLowerCase() === this.municipio.toLowerCase()) {
           this.gasolinerasFiltradas.push(gasolineraParsed);
+        }
+        if(this.comunidadProvincia != null) {
+
+          if(this.comunidadProvincia.IDProvincia == undefined 
+            && this.comunidadProvincia.IDCCAA == gasolineraParsed.IDCCAA){
+
+              this.gasolinerasFiltradas.push(gasolineraParsed);
+          }
+          if(this.comunidadProvincia.IDProvincia != undefined ){
+
+            if(this.comunidadProvincia.IDCCAA == gasolineraParsed.IDCCAA
+              && this.comunidadProvincia.IDProvincia == gasolineraParsed.IDProvincia
+            ) {
+
+              this.gasolinerasFiltradas.push(gasolineraParsed);
+            }
+          }
         }
       }
     });
@@ -68,5 +89,12 @@ export class BuscadorGasolinerasComponent implements OnInit {
   onClick(gasolinera: Gasolinera) {
 
     this.gasolineraSeleccionada.emit(gasolinera);
+  }
+
+  isPriceWithinRange(gasolinera: Gasolinera, min: number, max: number): boolean {
+
+    const price = this.obtenerPrecioCarburante(gasolinera).replaceAll(",", ".");
+    let priceFloat = parseFloat(price);
+    return priceFloat >= min && priceFloat <= max;
   }
 }

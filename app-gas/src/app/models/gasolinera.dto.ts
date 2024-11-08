@@ -26,9 +26,18 @@ export class Gasolinera {
     public Remision: string,
     public Rotulo: string,
     public IDEESS: string,
+    public IDCCAA: string,
+    public IDProvincia: string
     ){}
   }
 
+  export class ComunidadProvincia {
+    constructor(
+      public IDCCAA: string,
+      public IDProvincia: string | undefined
+    ){}
+    
+  }
   export interface GasolineraResponse {
     ListaEESSPrecio: Gasolinera[];
   }

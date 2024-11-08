@@ -1,0 +1,28 @@
+<div class="d-block justify-content-around mt-5">
+<div class="selector-comunidad">
+    <mat-form-field>
+        <mat-label> Comunidades Autónomas </mat-label>
+        <mat-select [(value)]="IDCCAA"  (valueChange)="buscarProvincias()">
+          @for (comunidad of listaComunidades; track $index) {
+            <mat-option [value]="comunidad.IDCCAA">{{comunidad.CCAA}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+</div>
+@if(IDCCAA != "") {
+
+    <div class="selector-provincia">
+        <mat-form-field>
+            <mat-label> Provincias </mat-label>
+            <mat-select [(value)]="IDProvincia">
+              @for (provincia of listaProvincias; track $index) {
+                <mat-option [value]="provincia.IDPovincia">{{provincia.Provincia}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+    </div>
+}
+</div>
+<div class="text-center">
+    <button class="btn btn-dark" [disabled]="IDCCAA == ''" (click)="comunidadProvinciaEmitter()">Buscar</button>
+</div>

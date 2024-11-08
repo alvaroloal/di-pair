@@ -15,4 +15,5 @@ export class GasolineraService {
 
     return this.http.get<GasolineraResponse>("https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/")
   }
+
 }

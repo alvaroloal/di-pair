@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BuscadorMunicipiosComponent } from '../../components/buscador-municipios/buscador-municipios.component'
-import { Gasolinera } from '../../models/gasolinera.dto';
+import { ComunidadProvincia, Gasolinera } from '../../models/gasolinera.dto';
 
 
 @Component({
@@ -11,10 +11,12 @@ import { Gasolinera } from '../../models/gasolinera.dto';
 export class GasolinerasComponent {
 
   municipio = "Gasolineras"  
+  codigoPostalSeleccionado!: string;
 
   municipioSeleccionado!: string;
   carburanteSeleccionado!: string;
   precioFiltrado!: string;
+  comunidadProvincia!: ComunidadProvincia;
 
   gasolinera!: Gasolinera;
 
@@ -33,6 +35,15 @@ export class GasolinerasComponent {
 
   mostrarGasolineraSeleccionada(gasolinera: Gasolinera) {
     this.gasolinera = gasolinera;
+  }
+
+  buscarPorCodigoPostal(cp: string) {
+
+    this.codigoPostalSeleccionado = cp;
+  }
+
+  buscarPorComPro(comunidadProvincia: ComunidadProvincia){
+    this.comunidadProvincia = comunidadProvincia
   }
 
 }
