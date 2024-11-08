@@ -1,26 +1,28 @@
-<div id="buscadores">
-    <h5 id="titulos">Municipios</h5>
+<div id="buscadores" class="container mt-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <h5 id="titulos" class="text-center mb-4">Municipios</h5>
 
-    <mat-form-field id="buscador" appearance="outline">
-        <mat-label>Municipios</mat-label>
-        <input type="text"
-        matInput
-        [(ngModel)]="valor" (input)="onChange()"/>
-        <mat-icon matSuffix>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M784-120 532-372q-30 24-69 
-            38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 
-            127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
-        </mat-icon>
-    </mat-form-field>
-    <div>
-        <div class="gasolinera-tabla ">
-                @for (nombre of listaNombres; track $index) {
-                    <div class="gasolinera-celda text-center m-3">
-                        <div mat-fab extended (click)="onClick(nombre)">
-                            {{nombre}}
-                        </div>
-                    </div>
-                }
+            <mat-form-field id="buscador" appearance="outline" class="w-100 mb-4">
+                <mat-label>Buscar</mat-label>
+                <input type="text"
+                       matInput
+                       [(ngModel)]="valor" 
+                       (input)="onChange()" />
+                <mat-icon matSuffix>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                    </svg>
+                </mat-icon>
+            </mat-form-field>
+
+            <div class="gasolinera-tabla overflow-auto" style="max-height: 300px; background-color: #f8f9fa; border-radius: 12px;">
+                <div *ngFor="let nombre of listaNombres; let i = index" class="gasolinera-celda text-center mb-2">
+                    <button mat-raised-button color="primary" class="w-100 text-truncate" style="background-color: #e0f2f1; color: dark;" (click)="onClick(nombre)">
+                        {{ nombre }}
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

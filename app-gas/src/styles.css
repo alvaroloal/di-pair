@@ -1,211 +1,114 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; }
-
-#buscadores{
-    margin: 12pt;
+#buscadores, #titulos {
     text-align: center;
-    
 }
 
-#titulos{
-    margin: 24pt;
-}
-
-#buscador{
-    min-width: 470px;
-    max-height: 41pt;
-    margin-bottom: 20pt;
-    background-color: #e3fac6;
-}
-
-.row{
+.row {
     width: 100%;
-    background-color: #F3EFEF;
+    background-color: #f8fafc;
 }
-.buscador-municipios{
-    width: 25%;
-    min-height: 38vh;
-    max-height: 38vh;
-    background-color: white;
-    margin: 25pt;
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-    border-radius: 19pt;
-    display: grid;
-    overflow: scroll;
+
+.buscador-municipios, .buscador-gasolineras, .exterior, .gasolineras {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
-.buscador-municipios::-webkit-scrollbar{
+
+.buscador-municipios {
+    width: 28%;
+    height: 58vh;
+
+}
+
+.buscador-gasolineras {
+    width: 28%;
+    height: 90vh;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.gasolineras {
+    height: 90vh;
+    overflow-y: auto;
+}
+
+.buscador-municipios::-webkit-scrollbar,
+.buscador-gasolineras::-webkit-scrollbar,
+.gasolineras::-webkit-scrollbar {
     display: none;
 }
-.gasolinera-celda{
-    border: #939c88, solid, 1pt;
-    background-color: #E8FFCC;
-    height: 34pt;
-    border-radius: 19px;
-    padding-top: 7.5pt;
-    
-}
-.gasolinera-celda:hover{
-    border: #bfc0be, solid, 1pt;
-    background-color: #D5FFA1;
-    
-}
 
-.buscador-gasolineras{
-    width: 28%;
-    min-height: 85vh;
-    background-color: white;
-    margin: 25pt;
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-    border-radius: 19pt;
-}
-.otros-datos{
-    width: 25%;
-    min-height: 85vh;
-    margin: 25pt;
-}
-
-.carburantes{
-    background-color: rgb(255, 255, 255);
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-    border-radius: 19pt;
-    min-height: 40vh;
-    padding-top: 5.5%;
-    padding-bottom: 4%;
-}
-
-.carburantes-exterior{
-    width: 75%;
-    min-height: 30vh;
-    background-color: white;
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-    border-radius: 19pt;
-    justify-content: center;
-    border: #292b28, solid, 1pt;
-    
-}
-
-.informacion{
-    background-color: rgb(255, 255, 255);
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-    border-radius: 19pt;
-    min-height: 40vh;
-    padding-top: 5.5%;
-    padding-bottom: 4%;
-    margin-top: 15.3%;
-}
-
-.informacion-exterior{
-    width: 75%;
-    min-height: 30vh;
-    background-color: white;
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-    border-radius: 19pt;
-    justify-content: center;
-    border: #161616, solid, 1pt;
-}
-
-.gasolinera-tabla{
-    padding: 5pt;
-    border-radius: 19px;
-    border: #c4f884, solid, 1pt;
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-}
 .container {
     display: flex;
-    justify-content: space-between; 
-    align-items: flex-start; 
-    margin-bottom: 15px; 
-    padding-bottom: 10px;
-    border: #D5FFA1, solid, 1pt;
-    background-color: #E8FFCC;
-    height: 58pt;
-    border-radius: 19px;
-    padding-top: 7.5pt;
-    margin-top: 10px;
-    min-width: 430px;
-    margin-left: 12pt;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #e0f2f1;
+    border-radius: 15px;
+    border: 1px solid #c5e1e5;
+    margin: 10px 0;
 }
-  
+
 .info {
     display: flex;
-    flex-direction: column; 
-    align-items: flex-start; 
-}
-  
-.nombre {
-    font-weight: bold; 
-    font-size: 16px; 
-    text-align: left; 
-}
-  
-.direccion {
-    font-size: 14px; 
-    color: #555;
+    flex-direction: column;
     text-align: left;
 }
-  
+
+.nombre {
+    font-weight: 700;
+    font-size: 16px;
+    color: #37474f;
+}
+
+.direccion {
+    font-size: 14px;
+    color: #607d8b;
+}
+
 .precio {
-    align-self: flex-end;
-    font-size: 16px; 
+    font-weight: 700;
+    font-size: 16px;
+    color: #ca2711;
 }
 
-.gasolineras{
-    
-    min-height: 88vh;
-    max-height: 88vh;
-    background-color: white;
-    margin: 25pt;
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-    border-radius: 19pt;
-    display: grid;
-    overflow: scroll;
-    padding: 24pt;
+#buscador {
+    min-width: 470px;
+    height: 45px;
+    margin-bottom: 20px;
+    background-color: #f1f8e9;
+    border: 1px solid #c5e1e5;
+    border-radius: 8px;
+    padding: 8px;
 }
 
-.gasolineras::-webkit-scrollbar{
-    display: none;
+.gasolinera-celda {
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    border-radius: 10px;
+    padding: 8px;
+    transition: background-color 0.3s;
 }
 
-.exterior{
-    min-width: 75%;
-    min-height: 88vh;
-    background-color: white;
-    margin: 25pt;
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-    border-radius: 19pt;
-    display: grid;
-    padding: 5%;
-    padding-right: 12%;
-    border: #beccad, solid, 1pt;
-    min-width: 570px;
-}
-
-.buscador-gasolineras{
-    width: 28%;
-    min-height: 88vh;
-    max-height: 88vh;
-    background-color: white;
-    margin: 25pt;
-    box-shadow: 1px 5px 5px rgb(209, 209, 209);
-    border-radius: 19pt;
-    display: grid;
-    overflow: scroll;
-}
-
-.buscador-gasolineras::-webkit-scrollbar{
-    display: none;
+.gasolinera-celda:hover {
+    background-color: #c8e6c9;
 }
 
 #carburante {
-    width: 200px; 
+    width: 200px;
     height: 35px;
     font-size: 16px;
-    padding: 5px; 
-    border-radius: 4px; 
-    margin-left: 12pt;
-    background-color: #acafa8;
-  }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #e0f2f1;
+    border: 1px solid #b0bec5;
+    color: #37474f;
+}

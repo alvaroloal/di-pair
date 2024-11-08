@@ -1,44 +1,34 @@
-<h5 class="text-center mb-3">Detalles</h5>
-<div class="informacion-exterior  mx-auto">
-    <table class="table table-stripped">
-        <tbody>
-            <tr>
-                @if(gasolinera.Rotulo != "")
-                {
-                    <td class="d-flex justify-content-between">
-                        <span>{{gasolinera.Rotulo}}</span>
-                    </td>
-                }
-            </tr>
-            <tr>
-                @if(gasolinera.Direccion != "")
-                {
-                    <td class="d-flex justify-content-between">
-                        <span>{{gasolinera.Direccion}}</span>
-                    </td>
-                }
-            </tr>
-            <tr>
-                @if(gasolinera.CP != "")
-                {
-                    <td class="d-flex justify-content-between">
-                        <span>{{gasolinera.CP}}</span>
-                    </td>
-                }
-            </tr>
-            <tr>
-                @if(gasolinera.Horario != "")
-                {
-                    <td class="d-flex justify-content-between">
-                        <span>{{gasolinera.Horario}}</span>
-                    </td>
-                }
-            </tr>
-        </tbody>
-    </table>
-    @if(gasolinera != null){
-    <div class="text-center">
-        <a [href]="gasolinera | googleMapsLink" target="_blank" class="btn btn-dark">Mostrar en el mapa</a>
+<div class="card mx-auto shadow-sm border-0 mt-4" style="max-width: 400px;">
+    <div class="card-header bg-primary text-white text-center">
+        <h5 class="mb-0">Detalles</h5>
     </div>
-}
+    <div class="card-body">
+        <table class="table table-borderless mb-0">
+            <tbody>
+                <tr *ngIf="gasolinera?.Rotulo">
+                    <td><strong>Rótulo:</strong></td>
+                    <td class="text-end">{{ gasolinera.Rotulo }}</td>
+                </tr>
+                <tr *ngIf="gasolinera?.Direccion">
+                    <td><strong>Dirección:</strong></td>
+                    <td class="text-end">{{ gasolinera.Direccion }}</td>
+                </tr>
+                <tr *ngIf="gasolinera?.CP">
+                    <td><strong>Código Postal:</strong></td>
+                    <td class="text-end">{{ gasolinera.CP }}</td>
+                </tr>
+                <tr *ngIf="gasolinera?.Horario">
+                    <td><strong>Horario:</strong></td>
+                    <td class="text-end">{{ gasolinera.Horario }}</td>
+                </tr>
+                
+            </tbody>
+            <div class="card-footer text-center">
+                <a [href]="gasolinera | googleMapsLink" target="_blank" class="btn btn-outline-primary">
+                    Mostrar en el mapa <i class="bi bi-map ms-1"></i>
+                </a>
+            </div>
+        </table>
+    </div>
+    
 </div>

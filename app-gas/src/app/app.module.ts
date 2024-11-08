@@ -8,7 +8,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MaterialModule } from './modules/material/material.module';
 import { BuscadorMunicipiosComponent } from './components/buscador-municipios/buscador-municipios.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { GasolinerasComponent } from './components/gasolineras/gasolineras.component';
 import { FormsModule } from '@angular/forms';
 import { BuscadorGasolinerasComponent } from './components/buscador-gasolineras/buscador-gasolineras.component';
@@ -17,19 +16,22 @@ import { PrecioComponent } from './components/precio/precio.component';
 import { DetallesComponent } from './components/detalles/detalles.component';
 import { GoogleMapsLinkPipe } from './pipes/google-maps-link.pipe';
 import { FiltroCpComponent } from './components/filtro-cp/filtro-cp.component';
+import { MenuComponent } from './shared/menu/menu.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BuscadorMunicipiosComponent,
-    NavMenuComponent,
     GasolinerasComponent,
     BuscadorGasolinerasComponent,
     CarburantesComponent,
     PrecioComponent,
     DetallesComponent,
     GoogleMapsLinkPipe,
-    FiltroCpComponent
+    FiltroCpComponent,
+    MenuComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

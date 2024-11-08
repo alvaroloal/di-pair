@@ -1,10 +1,15 @@
-<div id="buscadores">
+<div id="buscadores" class="mt-4">
   <div class="buscador-gasolinera">
     <h5 id="titulos">{{ titulo }}</h5>
 
-    <div>
-      <label for="carburante">Carburante:</label>
-      <select id="carburante" [(ngModel)]="carburanteSeleccionado" (change)="seleccionarCarburante(carburanteSeleccionado)">
+    <div class="container mt-4">
+      <label for="carburante">Carburante: </label>
+
+      <select
+        id="carburante"
+        [(ngModel)]="carburanteSeleccionado"
+        (change)="seleccionarCarburante(carburanteSeleccionado)"
+      >
         <option *ngFor="let tipo of tiposCarburantes" [value]="tipo.nombre">
           {{ tipo.nombre }}
         </option>
@@ -14,20 +19,29 @@
     <div class="p-2 d-flex justify-content-center">
       <div class="exterior">
         @for (gasolinera of gasolinerasFiltradas; track $index) {
-          <div (click)="onClick(gasolinera)">
-          <!-- Condición para mostrar todas las gasolineras si el título es "Gasolineras" -->
-          <div *ngIf="titulo.toLowerCase() === 'gasolineras' || gasolinera.Municipio.toLowerCase() === titulo.toLowerCase()" class="container">
+        <div (click)="onClick(gasolinera)">
+          <div
+            *ngIf="
+              titulo.toLowerCase() === 'gasolineras' ||
+              gasolinera.Municipio.toLowerCase() === titulo.toLowerCase()
+            "
+            class="container"
+          >
             <div class="info">
-              <p class="nombre"><strong>{{ gasolinera.Rotulo }}</strong></p>
+              <p class="nombre">
+                <strong>{{ gasolinera.Rotulo }}</strong>
+              </p>
               <p class="direccion">{{ gasolinera.Direccion }}</p>
             </div>
 
             <div class="precio">
-              <p><strong>{{ obtenerPrecioCarburante(gasolinera) }} €/L</strong></p>
+              <p>
+                <strong>{{ obtenerPrecioCarburante(gasolinera) }} €/L</strong>
+              </p>
             </div>
           </div>
         </div>
-      }
+        }
       </div>
     </div>
   </div>
