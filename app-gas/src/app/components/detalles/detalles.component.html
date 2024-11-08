@@ -1,0 +1,44 @@
+<h5 class="text-center mb-3">Detalles</h5>
+<div class="informacion-exterior  mx-auto">
+    <table class="table table-stripped">
+        <tbody>
+            <tr>
+                @if(gasolinera.Rotulo != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>{{gasolinera.Rotulo}}</span>
+                    </td>
+                }
+            </tr>
+            <tr>
+                @if(gasolinera.Direccion != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>{{gasolinera.Direccion}}</span>
+                    </td>
+                }
+            </tr>
+            <tr>
+                @if(gasolinera.CP != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>{{gasolinera.CP}}</span>
+                    </td>
+                }
+            </tr>
+            <tr>
+                @if(gasolinera.Horario != "")
+                {
+                    <td class="d-flex justify-content-between">
+                        <span>{{gasolinera.Horario}}</span>
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+    @if(gasolinera != null){
+    <div class="text-center">
+        <a [href]="gasolinera | googleMapsLink" target="_blank" class="btn btn-dark">Mostrar en el mapa</a>
+    </div>
+}
+</div>

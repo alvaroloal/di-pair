@@ -22,7 +22,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ListaGasolinerasComponent } from './components/lista-gasolineras/lista-gasolineras.component';
 import { PipeGoogleMapsPipe } from './pipes/pipe-google-maps.pipe';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FiltrosComponent } from './components/filtro/filtro.component';
+import { FilterCodeComponent } from './components/filter-code/filter-code.component';
+import { FilterNameComponent } from './components/filter-name/filter-name.component';
+import { FilterTypeComponent } from './components/filter-type/filter-type.component';
+import { GasListComponent } from './components/gas-list/gas-list.component';
+import { MaterialModule } from './modules/material.module';
+import { BannerComponent } from './shared/banner/banner.component';
+
 
 
 
@@ -35,7 +41,11 @@ import { FiltrosComponent } from './components/filtro/filtro.component';
     PageNotFoundComponent,
     ListaGasolinerasComponent,
     PipeGoogleMapsPipe,
-    FiltrosComponent
+    FilterCodeComponent,
+    FilterNameComponent,
+    FilterTypeComponent,
+    GasListComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +60,8 @@ import { FiltrosComponent } from './components/filtro/filtro.component';
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MaterialModule
 
   ],
   providers: [
