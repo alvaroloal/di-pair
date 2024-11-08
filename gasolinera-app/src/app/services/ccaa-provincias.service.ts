@@ -10,7 +10,7 @@ export class CcaaProvinciasService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerComunidades(): Observable<any> {
+obtenerComunidades(): Observable<any> {
     return this.http.get<any>('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/ComunidadesAutonomas/');
   }
 
